@@ -1,4 +1,6 @@
-//Getting the multiply bands about VI and greenness,inundation and cannopy.
+
+Getting the multiply bands about VI and greenness,inundation and cannopy using all landsat8 images during 2014-01-01 to 2016-07-23.
+
 // Load a Landsat 8 collection for a single path-row.
 //variable
 var start_date = '2014-01-01';
@@ -185,3 +187,5 @@ Export.image.toAsset({
   scale: 30,
   maxPixels:1e12
 });
+
+
