@@ -162,11 +162,11 @@ var L5_ndvi = L5coll.map(
         
     var lswi=image.normalizedDifference(['B4','B5']);//lswi=(nir-swir)/(nir+swir)
     var evi=image.expression(
-                  '2.5 * (nir - red) / (nir + 6 * red - 7.5 * blue + 10000)',
+                  '2.5 * (nir - red) / (nir + 6 * red - 7.5 * blue + 1)',
              {
-              red: image.select('B3'),    // 620-670nm, RED
-              nir: image.select('B4'),    // 841-876nm, NIR
-              blue: image.select('B1')    // 459-479nm, BLUE
+              red: image.select('B3').multiply(0.0001),    // 620-670nm, RED
+              nir: image.select('B4').multiply(0.0001),    // 841-876nm, NIR
+              blue: image.select('B1').multiply(0.0001)    // 459-479nm, BLUE
              }
             );        
     // // Rename that band to something appropriate
@@ -192,11 +192,11 @@ var L7_ndvi = L7coll.map(
         });
     var lswi=image.normalizedDifference(['B4','B5']);//lswi=(nir-swir)/(nir+swir)
     var evi=image.expression(
-                  '2.5 * (nir - red) / (nir + 6 * red - 7.5 * blue + 10000)',
+                  '2.5 * (nir - red) / (nir + 6 * red - 7.5 * blue + 1)',
              {
-              red: image.select('B3'),    // 620-670nm, RED
-              nir: image.select('B4'),    // 841-876nm, NIR
-              blue: image.select('B1')    // 459-479nm, BLUE
+              red: image.select('B3').multiply(0.0001),    // 620-670nm, RED
+              nir: image.select('B4').multiply(0.0001),    // 841-876nm, NIR
+              blue: image.select('B1').multiply(0.0001)    // 459-479nm, BLUE
              }
             ); 
 
@@ -223,11 +223,11 @@ var L8_ndvi = L8coll.map(
         });
     var lswi=image.normalizedDifference(['B5','B6']);//lswi=(nir-swir)/(nir+swir)
     var evi=image.expression(
-                  '2.5 * (nir - red) / (nir + 6 * red - 7.5 * blue + 10000)',
+                  '2.5 * (nir - red) / (nir + 6 * red - 7.5 * blue + 1)',
              {
-              red: image.select('B4'),    // 620-670nm, RED
-              nir: image.select('B5'),    // 841-876nm, NIR
-              blue: image.select('B2')    // 459-479nm, BLUE
+              red: image.select('B4').multiply(0.0001),    // 620-670nm, RED
+              nir: image.select('B5').multiply(0.0001),    // 841-876nm, NIR
+              blue: image.select('B2').multiply(0.0001)    // 459-479nm, BLUE
              }
             ); 
 
@@ -247,12 +247,12 @@ var ModisVi = ModisCollection.map(
     var ndvi = image.expression(
       '(nir - red) / (nir + red)',
       {
-        red:image.select('sur_refl_b01').multiply(0.0001),//
-        nir:image.select('sur_refl_b02').multiply(0.0001),//
+        red:image.select('sur_refl_b01'),//
+        nir:image.select('sur_refl_b02')//
       });
     var lswi=image.normalizedDifference(['sur_refl_b02','sur_refl_b06']);//lswi=(nir-swir)/(nir+swir)
     var evi=image.expression(
-      '2.5 * (nir - red) / (nir + 6 * red - 7.5 * blue + 10000)',
+      '2.5 * (nir - red) / (nir + 6 * red - 7.5 * blue + 1)',
       {
         red: image.select('sur_refl_b01'),    // 620-670nm, RED
         nir: image.select('sur_refl_b02'),    // 841-876nm, NIR
@@ -276,7 +276,7 @@ var S2Vi = composite.map(
       }).rename('ndvi');
     var lswi=image.normalizedDifference(['nir','swir']).rename('lswi');//lswi=(nir-swir)/(nir+swir)
     var evi=image.expression(
-      '2.5 * (nir - red) / (nir + 6 * red - 7.5 * blue + 10000)',
+      '2.5 * (nir - red) / (nir + 6 * red - 7.5 * blue + 1)',
       {
         red: image.select('red'),    // 620-670nm, RED
         nir: image.select('nir'),    // 841-876nm, NIR

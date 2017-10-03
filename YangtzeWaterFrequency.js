@@ -92,7 +92,7 @@ function WaterMask(image)
     var lswi=image.normalizedDifference(['B4','B5'])
           .rename('lswi').set('system:time_start',image.get('system:time_start'));//lswi=(nir-swir)/(nir+swir)
     var evi=image.expression(
-                  '2.5 * (nir - red) / (nir + 6 * red - 7.5 * blue + 10000)',
+                  '2.5 * (nir - red) / (nir + 6 * red - 7.5 * blue + 1)',
              {
               red: image.select('B3').multiply(0.0001),    // 620-670nm, RED
               nir: image.select('B4').multiply(0.0001),    // 841-876nm, NIR
@@ -126,7 +126,7 @@ function WaterMask(image)
     var lswi=image.normalizedDifference(['B4','B5'])
           .rename('lswi').set('system:time_start',image.get('system:time_start'));//lswi=(nir-swir)/(nir+swir)
     var evi=image.expression(
-                  '2.5 * (nir - red) / (nir + 6 * red - 7.5 * blue + 10000)',
+                  '2.5 * (nir - red) / (nir + 6 * red - 7.5 * blue + 1)',
              {
               red: image.select('B3').multiply(0.0001),    // 620-670nm, RED
               nir: image.select('B4').multiply(0.0001),    // 841-876nm, NIR
@@ -159,7 +159,7 @@ function WaterMask(image)
     var lswi=image.normalizedDifference(['B5','B6']).rename('evi')
         .rename('lswi').set('system:time_start',image.get('system:time_start'));//lswi=(nir-swir)/(nir+swir)
     var evi=image.expression(
-                  '2.5 * (nir - red) / (nir + 6 * red - 7.5 * blue + 10000)',
+                  '2.5 * (nir - red) / (nir + 6 * red - 7.5 * blue + 1)',
              {
               red: image.select('B4').multiply(0.0001),    // 620-670nm, RED
               nir: image.select('B5').multiply(0.0001),    // 841-876nm, NIR
